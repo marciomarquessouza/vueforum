@@ -1,6 +1,6 @@
 # forum
 
-> A very basic forum, sorry. Firt steps for something really great. 
+> A very basic forum. First steps for my Vue.js studies. 
 
 ## Build Setup
 
