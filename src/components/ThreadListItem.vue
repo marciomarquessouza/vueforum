@@ -40,11 +40,6 @@ export default {
       type: Object,
     },
   },
-  methods: {
-    testChild() {
-      this.$emit('testParent');
-    },
-  },
   computed: {
     repliesCount() {
       return Object.keys(this.thread.posts).length - 1;
