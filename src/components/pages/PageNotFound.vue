@@ -1,7 +1,7 @@
 <template>
-  <div class="col-full">
-    <h1>Not Found</h1>
-    <p>Sorry, we couldn't find what you are looking for.
+  <div :class="$style.centered">
+    <h1 :class="$style.headingLarge">Not Found</h1>
+    <p :class="$style.textLarge">Sorry, we couldn't find what you are looking for.
       Go to
       <router-link :to="{name: 'Home'}">
         Home
@@ -20,17 +20,15 @@ export default {
 
 </script>
 
-<style scoped>
-  h1 {
+<style module>
+  .headingLarge {
     font-size: 100px;
   }
-
-  p {
+  .textLarge {
     font-size: 50px;
     font-weight: 100px;
   }
-
-  div {
+  .centered {
     text-align: center;
   }
 </style>

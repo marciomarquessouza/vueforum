@@ -24,6 +24,7 @@
               </p>
               <p class="text-xsmall text-faded">2 hours ago</p>
           </div>
+
       </div>
   </div>
 </template>
@@ -37,6 +38,11 @@ export default {
     thread: {
       required: true,
       type: Object,
+    },
+  },
+  methods: {
+    testChild() {
+      this.$emit('testParent');
     },
   },
   computed: {
