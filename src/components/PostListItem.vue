@@ -1,37 +1,33 @@
 <template>
   <div class="post">
+    <div class="user-info">
+      <a href="#" class="user-name">{{ user.name }}</a>
 
-      <div class="user-info">
-          <a href="#" class="user-name">{{ user.name }}</a>
+      <a href="#">
+        <img class="avatar-large" :src="user.avatar" alt="">
+      </a>
 
-          <a href="#">
-              <img class="avatar-large" :src="user.avatar" alt="">
-          </a>
+      <p class="desktop-only text-small">{{ userPostsCount }} posts</p>
 
-          <p class="desktop-only text-small">{{ userPostsCount }} posts</p>
+    </div>
 
+    <div class="post-content">
+      <div>
+        <p>
+          {{ post.text }}
+        </p>
       </div>
-
-      <div class="post-content">
-          <div>
-            <p>
-              {{ post.text }}
-            </p>
-          </div>
-      </div>
-
-      <div class="post-date text-faded"
-            :title="post.publishedAt | humanFriendlyDate">
-          {{ post.publishedAt | difForHuman }}
-      </div>
+    </div>
+    <div class="post-date text-faded">
+      <AppDate :timestamp="post.publishedAt" />
+    </div>
   </div>
-
 </template>
 
 <script>
 
 import sourceData from '@/data.json';
-import moment from 'moment';
+import AppDate from '@/components/AppDate';
 
 export default {
   props: {
@@ -40,20 +36,15 @@ export default {
       type: Object,
     },
   },
+  components: {
+    AppDate,
+  },
   computed: {
     user() {
       return sourceData.users[this.post.userId];
     },
     userPostsCount() {
       return Object.keys(this.user.posts).length;
-    },
-  },
-  filters: {
-    humanFriendlyDate(date) {
-      return moment.unix(date).locale('pt-br').format('D MMMM YYYY, h:mm:ss a');
-    },
-    difForHuman(date) {
-      return moment.unix(date).locale('pt-br').fromNow();
     },
   },
 };
