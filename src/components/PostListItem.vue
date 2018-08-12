@@ -20,8 +20,9 @@
           </div>
       </div>
 
-      <div class="post-date text-faded">
-          {{ post.publishedAt }}
+      <div class="post-date text-faded"
+            :title="post.publishedAt | humanFriendlyDate">
+          {{ post.publishedAt | difForHuman }}
       </div>
   </div>
 
@@ -30,6 +31,7 @@
 <script>
 
 import sourceData from '@/data.json';
+import moment from 'moment';
 
 export default {
   props: {
@@ -46,10 +48,14 @@ export default {
       return Object.keys(this.user.posts).length;
     },
   },
+  filters: {
+    humanFriendlyDate(date) {
+      return moment.unix(date).locale('pt-br').format('D MMMM YYYY, h:mm:ss a');
+    },
+    difForHuman(date) {
+      return moment.unix(date).locale('pt-br').fromNow();
+    },
+  },
 };
 
 </script>
-
-<style>
-
-</style>
