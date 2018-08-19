@@ -12,15 +12,9 @@
 
 <script>
 
-import sourceData from '@/data.json';
 import ForumList from './ForumList';
 
 export default {
-  data() {
-    return {
-      forums: Object.values(sourceData.forums),
-    };
-  },
   props: {
     category: {
       required: true,
@@ -31,6 +25,9 @@ export default {
     ForumList,
   },
   computed: {
+    forums() {
+      return Object.values(this.$store.state.forums);
+    },
     categoryForums() {
       const forumIds = Object.keys(this.category.forums);
       return Object.values(this.forums)
